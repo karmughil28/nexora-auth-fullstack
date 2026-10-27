@@ -27,7 +27,11 @@ export default function Signup() {
 
     setLoading(true);
     try {
-      const { data } = await axios.post("/api/auth/signup", { name: name.trim(), email: email.trim(), password });
+      const { data } = await axios.post(`${import.meta.env.VITE_API_URL}/api/auth/signup`,{
+    name,
+    email,
+    password
+  });
       saveSession(data);
       navigate("/dashboard", { replace: true });
     } catch (err) {
